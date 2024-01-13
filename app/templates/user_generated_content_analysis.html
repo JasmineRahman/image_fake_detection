@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Generated Content Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>User-Generated Content Analysis</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/deepfake_awareness">Deepfake Awareness</a></li>
+            <li><a href="/deepfake_examples">Deepfake Examples</a></li>
+            <li><a href="/tutorial_on_spotting_deepfakes">Tutorial on Spotting Deepfakes</a></li>
+            <li><a href="/community_reports">Community Reports</a></li>
+            <li><a href="/deepfake_newsfeed">Deepfake Newsfeed</a></li>
+            <li><a href="/user_generated_content_analysis">User-Generated Content Analysis</a></li>
+            <li><a href="/image_history">Image History</a></li>
+            <li><a href="/community_forum">Community Forum</a></li>
+        </ul>
+    </nav>
+
+    <section id="main-content">
+        <h2>User-Generated Content Analysis</h2>
+        <p>Our system analyzes user-generated content to identify potential deepfake images. If you have concerns about a specific image, please submit it for analysis.</p>
+
+        <form action="/submit_analysis" method="post" enctype="multipart/form-data">
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit">Submit for Analysis</button>
+        </form>
+
+        <!-- Display analysis results or feedback here if needed -->
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Image Fake Detection</p>
+    </footer>
+</body>
+</html>
