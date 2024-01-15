@@ -6,8 +6,10 @@
     <title>Image Fake Detection</title>
     <!-- Add Bootstrap CDN link for CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- Link to your custom styles.css -->
-    
+    <link rel="stylesheet" href="style.css">
     <style>
         /* Custom styles for full-page background color */
         body {
@@ -36,49 +38,100 @@
 
     <!-- Bootstrap Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Image Fake Detection</a>
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-camera"></i> Image Fake Detection
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <!-- Existing navigation links -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <!-- Add Image Authenticity Checker link -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/image_authenticity_checker">
+                        <i class="fas fa-search"></i> Image Authenticity Checker
+                    </a>
+                </li>
+                <!-- Existing navigation links -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/deepfake_awareness">
+                        <i class="fas fa-info-circle"></i> Deepfake Awareness
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/deepfake_awareness.html">Deepfake Awareness</a>
+                    <a class="nav-link" href="/deepfake_examples">
+                        <i class="fas fa-images"></i> Deepfake Examples
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/deepfake_examples">Deepfake Examples</a>
+                    <a class="nav-link" href="/tutorial_on_spotting_deepfakes">
+                        <i class="fas fa-book"></i> Tutorial on Spotting Deepfakes
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/tutorial_on_spotting_deepfakes">Tutorial on Spotting Deepfakes</a>
+                    <a class="nav-link" href="/community_reports">
+                        <i class="fas fa-flag"></i> Community Reports
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/community_reports">Community Reports</a>
+                    <a class="nav-link" href="/newsfeed">
+                        <i class="fas fa-newspaper"></i> Deepfake Newsfeed
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/newsfeed">Deepfake Newsfeed</a>
+                    <a class="nav-link" href="/user_generated_content_analysis">
+                        <i class="fas fa-chart-bar"></i> User-Generated Content Analysis
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user_generated_content_analysis">User-Generated Content Analysis</a>
+                    <a class="nav-link" href="/image_history">
+                        <i class="fas fa-history"></i> Image History
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/image_history">Image History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/community_forum">Community Forum</a>
+                    <a class="nav-link" href="/community_forum">
+                        <i class="fas fa-comments"></i> Community Forum
+                    </a>
                 </li>
             </ul>
         </div>
     </nav>
 
+    <!-- Bootstrap Main Content -->
     <section id="main-content" class="container mt-4">
         <!-- Bootstrap Jumbotron for a prominent message -->
         <div class="jumbotron">
-            <h1 class="display-4">Welcome to Image Fake Detection</h1>
+            <h1 class="display-4"><i class="fas fa-camera"></i> Welcome to Image Fake Detection</h1>
             <hr class="my-4">
             <p>Explore the various features and resources to learn more about deepfake detection.</p>
+        </div>
+
+        <!-- New Section: Image Authenticity Checker -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2><i class="fas fa-search"></i> Image Authenticity Checker</h2>
+                <p>Verify the authenticity of images using our Image Authenticity Checker. Upload an image below to get started:</p>
+
+                <!-- Image Authenticity Checker Form -->
+                <form id="authenticity-check-form">
+                    <div class="form-group">
+                        <label for="imageUpload"><i class="fas fa-file-image"></i> Upload Image:</label>
+                        <input type="file" class="form-control-file" id="imageUpload" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Check Authenticity</button>
+                </form>
+
+                <!-- Placeholder for Results or Instructions -->
+                <div id="authenticity-results" class="mt-4">
+                    <!-- Results or instructions will be displayed here -->
+                </div>
+            </div>
         </div>
     </section>
 
