@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import requests
 
 app = Flask(__name__)
 
@@ -23,8 +24,28 @@ def community_reports():
     return render_template('community_reports.html')
 
 @app.route('/newsfeed')
-def newsfeed():
-    return render_template('newsfeed.html')
+def get_newsfeed():
+    api_key = "b88af15a44a34695ac9df0190bee8d74"
+    base_url = "https://newsapi.org/v2/everything"
+
+    # Parameters for the request
+    params = {
+        'q': 'deepfake',
+        'apiKey': api_key,
+        'sortBy': 'publishedAt',
+    }
+
+    # Make the request
+    response = requests.get(base_url, params=params)
+    data = response.json()
+
+    # Check if there are articles
+    if data['status'] == 'ok' and data['totalResults'] > 0:
+        articles = data['articles']
+    else:
+        articles = []
+
+    return render_template('newsfeed.html', news_articles=articles)
 
 @app.route('/user_generated_content_analysis')
 def user_generated_content_analysis():
@@ -33,10 +54,6 @@ def user_generated_content_analysis():
 @app.route('/image_history')
 def image_history():
     return render_template('image_history.html')
-
-# @app.route('/community_forum')
-# def community_forum():
-#     return render_template('community_forum.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
