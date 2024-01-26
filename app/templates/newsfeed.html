@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@vitalets/google-translate-api@7.0.0/dist/browser.js"></script>
+    <script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     
     <style>
         body {
@@ -30,6 +32,8 @@
 
         section {
             padding: 20px;
+            max-height: 500px; 
+            overflow-y: auto;
         }
 
         .news-item {
@@ -50,8 +54,15 @@
         }
 
         .card-text {
-            color: #6c757d;
+            color: #adb4bb;
+            max-height: 100px;
+            overflow-y:auto;
         }
+
+        .news-item:hover {
+        transform: scale(1.05);
+        }
+    
 
         .card-date {
             color: #868e96;
@@ -59,6 +70,12 @@
 
         .news-item {
             margin-bottom: 20px;
+            padding: 15px;
+            background-color: #020915;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+
         }
 
         .translate-btn {
@@ -110,7 +127,7 @@
                     <h3 class="card-title">{{ article.title }}</h3>
                     <p class="card-text">{{ article.description }}</p>
                     <p class="card-date">Published on: {{ article.publishedAt }}</p>
-                    <button class="btn btn-primary translate-btn" data-lang="en">Translate</button>
+                    <button class="btn btn-primary translate-btn" data-lang="en" data-card-id="{{ article.id }}">Translate</button>
                     <a href="{{ article.url }}" target="_blank" class="btn btn-primary">Read More</a>
                 </div>
             {% endfor %}
@@ -119,66 +136,58 @@
         {% endif %}
     </section>
 
+    
+    
+
     <footer>
         <p>&copy; 2024 Image Fake Detection</p>
     </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const translateButtons = document.querySelectorAll('.translate-btn');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const translateButtons = document.querySelectorAll('.translate-btn');
 
-        translateButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const newsItem = this.closest('.news-item');
-                const titleElement = newsItem.querySelector('.card-title');
-                const descriptionElement = newsItem.querySelector('.card-text');
-                const publishedDateElement = newsItem.querySelector('.card-date');
+            translateButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const cardId = this.getAttribute('data-card-id');
+                    const newsItem = document.getElementById(cardId);
+                    const titleElement = newsItem.querySelector('.card-title');
+                    const descriptionElement = newsItem.querySelector('.card-text');
+                    const publishedDateElement = newsItem.querySelector('.card-date');
 
-                // You can customize the target language code as needed
-                const targetLang = this.getAttribute('data-lang');
+                    // You can customize the target language code as needed
+                    const targetLang = this.getAttribute('data-lang');
 
-                // Translate title
-                translateText(titleElement.textContent, targetLang)
-                    .then(translatedTitle => {
-                        titleElement.textContent = translatedTitle;
-                    })
-                    .catch(error => console.error('Error translating title:', error));
+                    // Translate title
+                    translateText(titleElement.textContent, targetLang)
+                        .then(translatedTitle => {
+                            titleElement.textContent = translatedTitle;
+                        })
+                        .catch(error => console.error('Error translating title:', error));
 
-                // Translate description
-                translateText(descriptionElement.textContent, targetLang)
-                    .then(translatedDescription => {
-                        descriptionElement.textContent = translatedDescription;
-                    })
-                    .catch(error => console.error('Error translating description:', error));
+                    // Translate description
+                    translateText(descriptionElement.textContent, targetLang)
+                        .then(translatedDescription => {
+                            descriptionElement.textContent = translatedDescription;
+                        })
+                        .catch(error => console.error('Error translating description:', error));
 
-                // Translate published date (optional)
-                // Uncomment this section if you want to translate the published date
-                // translateText(publishedDateElement.textContent, targetLang)
-                //     .then(translatedDate => {
-                //         publishedDateElement.textContent = translatedDate;
-                //     })
-                //     .catch(error => console.error('Error translating date:', error));
-            });
-        });
-
-        function translateText(text, targetLang) {
-            return new Promise((resolve, reject) => {
-                googleTranslate.translate(text, 'en', targetLang, function (err, translation) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(translation.translatedText);
-                    }
                 });
             });
-        }
-    });
-</script>
 
-
+            function translateText(text, targetLang) {
+                return new Promise((resolve, reject) => {
+                    googleTranslate.translate(text, 'en', targetLang, function (err, translation) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(translation.translatedText);
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
-
-
-

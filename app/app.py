@@ -23,6 +23,10 @@ def tutorial_on_spotting_deepfakes():
 def community_reports():
     return render_template('community_reports.html')
 
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html')
+
 @app.route('/newsfeed')
 def get_newsfeed():
     api_key = "b88af15a44a34695ac9df0190bee8d74"
