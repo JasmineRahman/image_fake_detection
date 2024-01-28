@@ -8,11 +8,12 @@
 
     <!-- Add your custom styles or Bootstrap for styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="C:\Users\jasmi\OneDrive\Documents\DeepLearning\image_fake_detection\app\templates\quiz.html">
     
 
     <style>
-        /* Your existing styles */
-
+        
         body {
             background-color: #104467;
             color: #fff;
@@ -347,23 +348,24 @@
         <p>Click here to attend the quiz</p>
     </div>
 
-    <script>
 
-function loadQuiz() {
-            // Create an iframe element
+    <script>
+        
+            function loadQuiz() {
             var iframe = document.createElement('iframe');
-            iframe.src = 'quiz.html';
+            iframe.src = 'C:/Users/jasmi/OneDrive/Documents/DeepLearning/image_fake_detection/app/templates/quiz.html';
             iframe.frameBorder = '0';
             iframe.width = '100%';
             iframe.height = '600px';
 
-            // Replace the quiz box with the quiz content
             document.getElementById('quiz-box').innerHTML = '';
             document.getElementById('quiz-box').appendChild(iframe);
         }
+    
 
         // Add a click event listener to the quiz box
-        document.getElementById('quiz-box').addEventListener('click', loadQuiz);
+        document.getElementById('quiz-box').addEventListener('click', loadQuiz); 
+
     
         const chatbotToggler = document.querySelector(".chatbot-toggler");
         const closeBtn = document.querySelector(".close-btn");
@@ -371,7 +373,7 @@ function loadQuiz() {
         const chatInput = document.querySelector(".chat-input textarea");
         const sendChatBtn = document.querySelector(".chat-input span");
 
-        let userMessage = null; // Variable to store user's message
+        let userMessage = null; 
         const API_KEY = "your_secure_api_key"; // Replace with your secure API key
         const inputInitHeight = chatInput.scrollHeight;
 
@@ -408,7 +410,7 @@ function loadQuiz() {
             messageElement.innerHTML = output.replace(/\n/g, "<br>"); // Replace newlines with <br> for proper rendering
         })
         .catch((error) => {
-            console.error("API Error:", error); // Add this line to log any errors
+            console.error("API Error:", error); 
             messageElement.classList.add("error");
             messageElement.textContent = "Oops! Something went wrong. Please try again.";
         })
@@ -433,7 +435,7 @@ function loadQuiz() {
             userMessage = null;
 
             setTimeout(() => {
-                // Display "Thinking..." message while waiting for the response
+                
                 const incomingChatLi = createChatLi("Thinking...", "incoming");
                 chatbox.appendChild(incomingChatLi);
                 chatbox.scrollTo(0, chatbox.scrollHeight);
